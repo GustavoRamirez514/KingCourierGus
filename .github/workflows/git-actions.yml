@@ -25,7 +25,7 @@ jobs:
         run: python manage.py migrate --database=test
 
       - name: Load environment variables
-        uses: ammaraskar/dotenv@v1
+        uses: xom9ikk/dotenv@v2
         with:
           path: .env
 
