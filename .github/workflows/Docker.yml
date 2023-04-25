@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_TAG: miche890/king-courier:latest-$(date +%s)
+  IMAGE_TAG: miche890/king-courier:latest-${{ github.sha }}
 
 jobs:
   build-and-deploy:
