@@ -1,4 +1,4 @@
-name: Test copy
+name: Test Docker
 
 on:
   push:
