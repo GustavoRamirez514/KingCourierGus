@@ -1,7 +1,6 @@
 name: Prueba
 
 on:
-  on:
   push:
     branches:
       - main
