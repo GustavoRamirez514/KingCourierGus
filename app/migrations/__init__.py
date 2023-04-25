@@ -17,7 +17,7 @@ class CustomTestRunner(DiscoverRunner):
 @receiver(connection_created)
 def setup_test_db(connection, **kwargs):
     if connection.alias == 'test':
-        connection.executescript('PRAGMA foreign_keys=ON;')
+        connection.connection.executescript('PRAGMA foreign_keys=ON;')
 
 
 class Migration(migrations.Migration):
