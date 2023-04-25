@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -20,11 +22,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Load environment variables
-        uses: xom9ikk/dotenv@v2
-        with:
-          path:
 
       - name: Apply database migrations
         run: python manage.py migrate --database=test
