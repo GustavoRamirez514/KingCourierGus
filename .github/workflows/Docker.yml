@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_TAG: miche890/king-courier:$(date +'%Y%m%d%H%M%S')
+  IMAGE_TAG: miche890/king-courier:$(date +%s)
 
 jobs:
   build-and-deploy:
