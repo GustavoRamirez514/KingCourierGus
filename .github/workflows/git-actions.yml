@@ -24,6 +24,11 @@ jobs:
       - name: Apply database migrations
         run: python manage.py migrate --database=test
 
+      - name: Load environment variables
+        uses: ammaraskar/dotenv@v1
+        with:
+          path: .env
+
       - name: Run tests
         run: |
           python manage.py test
