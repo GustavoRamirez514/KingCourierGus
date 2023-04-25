@@ -57,9 +57,9 @@ class ViewsTestCase(TestCase):
         self.assertContains(response, 'usuario o contraseña incorrectos')
 
         # prueba de solicitud POST con credenciales correctas
-        # user = User.objects.create_user(username='usuario_prueba', password='contraseña_prueba')
-        # response = self.client.post(url, {'username': 'usuario_prueba', 'password': 'contraseña_prueba'})
-        # self.assertRedirects(response, reverse('welcome'))
+        user = User.objects.create_user(username='usuario_prueba', password='contraseña_prueba')
+        response = self.client.post(url, {'username': 'usuario_prueba', 'password': 'contraseña_prueba'})
+        self.assertRedirects(response, reverse('welcome'))
 
     def test_register_view(self):
         url = reverse('register')
