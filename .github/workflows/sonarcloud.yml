@@ -25,6 +25,8 @@ jobs:
           status=$(curl -s -u $SONAR_TOKEN: "https://sonarcloud.io/api/qualitygates/project_status?projectKey=GustavoRamirez514_KingCourierGus" | jq -r '.projectStatus.status')
           if [ "$status" != "OK" ]; then
             echo "Quality Gate failed. Status: $status"
+            git reset HEAD~1 --hard
+            git push --force
             exit 1
           fi
 
