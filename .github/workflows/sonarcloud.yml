@@ -1,4 +1,4 @@
-name: SonarCloud Analysis
+name: SonarCloud
 
 on:
   push:
@@ -19,8 +19,8 @@ jobs:
         python-version: 3.8
 
     - name: Install SonarCloud scanner
-      run: curl -L https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip && unzip build-wrapper-linux-x86.zip && rm build-wrapper-linux-x86.zip && curl -L https://sonarcloud.io/static/python/download-cli.py | python
-
+      run: curl -L https://sonarcloud.io/static/cpp/build-wrapper-linux-x86_latest.zip -o build-wrapper-linux-x86.zip && unzip build-wrapper-linux-x86.zip && rm build-wrapper-linux-x86.zip && curl -L https://sonarcloud.io/static/python/download-cli.py | python
+      
     - name: Analyze with SonarCloud
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Añadir la variable de entorno "SONAR_TOKEN" con el valor de tu token de SonarCloud
