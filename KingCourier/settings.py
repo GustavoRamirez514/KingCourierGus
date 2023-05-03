@@ -15,6 +15,7 @@ import os
 from dotenv import load_dotenv
 import sys
 
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,8 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
-    'user'
+    'login',
+    'user',
+    'GestionClientes',
+    'GestionMensajeros',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +64,7 @@ ROOT_URLCONF = 'KingCourier.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR / 'templates')],
+        'DIRS': [os.path.join(BASE_DIR / 'frontend/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,7 +137,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'frontend/static')
 ]
 
 # Default primary key field type
@@ -153,6 +156,9 @@ EMAIL_PORT = 587
 
 # sustituir modelo de user
 AUTH_USER_MODEL = 'user.User'
+
+# URL del login
+LOGIN_URL = '/'
 
 # configuracion de la DB temporal para los test
 if 'test' in sys.argv:

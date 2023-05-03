@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>King Courier | Usuarios</title>
+{% endblock head %}
+
+{% block header %}
+    {% include 'layouts/navbar.html' %}
+{% endblock header %}
+
+{% block content %}
+    <h3>Usuarios</h3>
+    <button onclick="window.location.href='{% url 'register' %}'" >Crear Usuario</button>
+    {% for user in users  %}
+        <p>{{user}}</p>
+    {% endfor %}
+{% endblock content %}

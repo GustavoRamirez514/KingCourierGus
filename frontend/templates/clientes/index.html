@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>King Courier | Clientes</title>
+{% endblock head %}
+
+{% block header %}
+    {% include 'layouts/navbar.html' %}
+{% endblock header %}
+
+{% block content %}
+  <h1>Clientes</h1>
+  <button onclick="window.location.href='{% url 'create_cliente' %}'" >Crear Cliente</button>
+  <p>{{message}}</p>
+  {% for cliente in clientes %}
+    <ul>
+      <li>
+        <a href="{% url 'detalle_cliente' cliente.id %}">
+          <p>{{ cliente.nombre }}</p>
+        </a>
+
+        <a href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+
+        <form method="post" action="{% url 'eliminar_cliente' cliente.id %}">
+          {% csrf_token %}
+          <button type="submit">Eliminar</button>
+        </form>
+      </li>
+    </ul>
+  {% endfor %}
+{% endblock content %}
