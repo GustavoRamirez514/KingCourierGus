@@ -1,4 +1,4 @@
-name: Sonar
+name: SonarCloud
 on:
   push:
     branches:
@@ -12,47 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-
-
-
-
-
-# name: SonarCloud Analysis
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-
-# jobs:
-#   sonarcloud:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v2
-
-#     - name: Set up Python
-#       uses: actions/setup-python@v2
-#       with:
-#         python-version: 3.8
-
-#     - name: Install SonarCloud scanner
-#       run: curl -L https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip && unzip build-wrapper-linux-x86.zip && rm build-wrapper-linux-x86.zip && curl -L https://sonarcloud.io/static/python/download-cli.py | python
-
-#     - name: Analyze with SonarCloud
-#       env:
-#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Añadir la variable de entorno "SONAR_TOKEN" con el valor de tu token de SonarCloud
-#       run: sonar-scanner -Dsonar.login="${SONAR_TOKEN}"
-
-#     - name: Publish coverage report to SonarCloud
-#       env:
-#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Añadir la variable de entorno "SONAR_TOKEN" con el valor de tu token de SonarCloud
-#       run: sonar-scanner -Dsonar.login="${SONAR_TOKEN}" -Dsonar.python.coverage.reportPaths=coverage.xml
