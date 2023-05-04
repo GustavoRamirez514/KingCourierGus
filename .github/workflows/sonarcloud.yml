@@ -15,11 +15,17 @@ jobs:
           fetch-depth: 0
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          wait: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          quality-profile: Sonar way
-          fail-on-errors: true
+      - name: Check SonarCloud results
+        run: |
+          if [ "${{ steps.sonarcloud.outputs.quality_gate_status }}" != "OK" ]; then
+            echo "SonarCloud analysis failed"
+            exit 1
+          fi
+
       
 
