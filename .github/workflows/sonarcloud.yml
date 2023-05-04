@@ -1,38 +1,3 @@
-# name: SonarCloud
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     types: [opened, synchronize, reopened]
-# jobs:
-#   sonarcloud:
-#     name: SonarCloud
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#         with:
-#           fetch-depth: 0
-#       - name: SonarCloud Scan
-#         uses: SonarSource/sonarcloud-github-action@master
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#       - name: Check Quality Gate status
-#         env:
-#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#         run: |
-#           status=$(curl -s -u $SONAR_TOKEN: "https://sonarcloud.io/api/qualitygates/project_status?projectKey=GustavoRamirez514_KingCourierGus" | jq -r '.projectStatus.status')
-#           if [ "$status" != "OK" ]; then
-#             echo "Quality Gate failed. Status: $status"
-#             git reset HEAD~1 --hard
-#             git push --force
-#             exit 1
-#           fi
-
-
-
-
 name: SonarCloud
 on:
   push:
