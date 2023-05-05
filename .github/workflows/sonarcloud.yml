@@ -18,12 +18,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Send Slack notification on SonarCloud failure
-        if: ${{ job.status != 'success' }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-         curl -X POST -H 'Content-type: application/json' --data '{"text":"<!here> The SonarCloud analysis failed!"}' $SLACK_WEBHOOK_URL
  
 
       
