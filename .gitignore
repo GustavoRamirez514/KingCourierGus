@@ -1,5 +1,5 @@
 .env
-ALTA-COMPLEJIDAD-CICLOMATICA.py
+# ALTA-COMPLEJIDAD-CICLOMATICA.py
 ### Django ###
 *.log
 *.pot
