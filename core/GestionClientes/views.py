@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente, Sucursale
 from .forms import CreateCliente, SucursaleForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_safe
 from core.user.models import User
 
 # Create your views here.
@@ -22,7 +23,7 @@ def cliente(request):
 
 # crear clientes
 
-
+@require_safe
 def create_cliente(request):
     if request.method == 'GET':
         return render(request, 'clientes/create.html', {
@@ -51,6 +52,7 @@ def create_cliente(request):
 
 
 # detalles de un cliente
+@require_safe
 def detalle_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
     # Filtrar los usuarios cuyo propietario cliente sea igual al del detalle
@@ -64,6 +66,7 @@ def detalle_cliente(request, cliente_id):
     })
 
 # editar cliente
+@require_safe
 def editar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
     if request.method == 'POST':
@@ -79,7 +82,7 @@ def editar_cliente(request, cliente_id):
 
 # eliminar cliente
 
-
+@require_safe
 def eliminar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
     cliente.activo = False
@@ -88,6 +91,7 @@ def eliminar_cliente(request, cliente_id):
 
 
 # listar sucursales registradas
+@require_safe
 def sucursal(request):
     sucursal = Sucursale.objects.filter(cliente=request.user.propietario_cliente)
     if sucursal.exists():
@@ -100,7 +104,7 @@ def sucursal(request):
             'message': message
         })
 
-
+@require_safe
 def create_sucursal(request):
     cliente = request.user.propietario_cliente
     if request.method == 'GET':
@@ -123,7 +127,7 @@ def create_sucursal(request):
                 'error': 'Datos inválidos',
             })
 
-
+@require_safe
 def detalle_sucursal(request, sucursal_id):
     sucursal = get_object_or_404(Sucursale, pk=sucursal_id)
     return render(request, 'sucursales/detail.html', {
@@ -131,6 +135,7 @@ def detalle_sucursal(request, sucursal_id):
     })
 
 # editar sucursal
+@require_safe
 def editar_sucursal(request, sucursal_id):
     sucursal = get_object_or_404(Sucursale, pk=sucursal_id)
     if request.method == 'POST':
@@ -144,7 +149,7 @@ def editar_sucursal(request, sucursal_id):
         'form': form, 'sucursal': sucursal
     })
 
-
+@require_safe
 def eliminar_sucursal(request, sucursal_id):
     sucursal = get_object_or_404(Sucursale, pk=sucursal_id)
     sucursal.activo = False
