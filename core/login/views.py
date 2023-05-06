@@ -9,7 +9,8 @@ from django.views.decorators.http import require_http_methods
 def perfil(request):
     return render(request, 'login/perfil.html')
 
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["GET"])
+@require_http_methods(["POST"])
 def login_home(request):
     if request.method == 'GET':
         return render(request, 'login/login.html')
