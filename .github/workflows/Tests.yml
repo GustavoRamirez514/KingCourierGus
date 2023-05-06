@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SECRET_KEY: ${{ secrets.entorno.SECRET_KEY }}
+      SECRET_KEY: ${{ secrets.entorno_SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v2
