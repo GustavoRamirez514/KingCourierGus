@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import sys
+import dj_database_url
 
 
 load_dotenv()
@@ -89,14 +90,19 @@ WSGI_APPLICATION = 'KingCourier.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRESS_DATABASE'),
-        'USER': os.environ.get('POSTGRESS_USER'),
-        'PASSWORD': os.environ.get('POSTGRESS_PASSWORD'),
-        'HOST': os.environ.get('POSTGRESS_HOST'),
-        'DATABASE_PORT': os.environ.get('POSTGRESS_PORT'),
-    },
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': os.environ.get('POSTGRESS_DATABASE'),
+        # 'USER': os.environ.get('POSTGRESS_USER'),
+        # 'PASSWORD': os.environ.get('POSTGRESS_PASSWORD'),
+        # 'HOST': os.environ.get('POSTGRESS_HOST'),
+        # 'DATABASE_PORT': os.environ.get('POSTGRESS_PORT'),
+    # },
+        'default': dj_database_url.config( 
+            default='postgresql://postgres:postgres@localhost/postgres',
+            conn_max_age=600 
+         ),
+    
     'test': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': ':memory:',
