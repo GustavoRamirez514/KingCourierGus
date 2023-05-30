@@ -1,5 +1,4 @@
 .env
-ALTA-COMPLEJIDAD-CICLOMATICA.py
 ### Django ###
 *.log
 *.pot
@@ -7,3 +6,6 @@ ALTA-COMPLEJIDAD-CICLOMATICA.py
 __pycache__/
 media
 KingCourierDB.sql
+.scannerwork
+coverage.xml
+.coverage
