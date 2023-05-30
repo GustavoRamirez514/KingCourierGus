@@ -5,7 +5,7 @@ from .models import User
 
 
 # Create your views here.
-@login_required
+
 def user_create(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
