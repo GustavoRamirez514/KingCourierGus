@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('SECRET_KEY')
 # DESPLIEGUE
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='SECRET_KEY_DJANGO')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG')
@@ -94,18 +94,18 @@ WSGI_APPLICATION = 'KingCourier.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.environ.get('POSTGRESS_DATABASE'),
-        # 'USER': os.environ.get('POSTGRESS_USER'),
-        # 'PASSWORD': os.environ.get('POSTGRESS_PASSWORD'),
-        # 'HOST': os.environ.get('POSTGRESS_HOST'),
-        # 'DATABASE_PORT': os.environ.get('POSTGRESS_PORT'),
-    # },
-        'default': dj_database_url.config( 
-            default='postgresql://postgres:postgres@localhost/postgres',
-            conn_max_age=600 
-         ),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRESS_DATABASE'),
+        'USER': os.environ.get('POSTGRESS_USER'),
+        'PASSWORD': os.environ.get('POSTGRESS_PASSWORD'),
+        'HOST': os.environ.get('POSTGRESS_HOST'),
+        'DATABASE_PORT': os.environ.get('POSTGRESS_PORT'),
+    },
+        # 'default': dj_database_url.config( 
+        #     default='postgresql://postgres:postgres@localhost/postgres',
+        #     conn_max_age=600 
+        #  ),
     
     'test': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -113,6 +113,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
