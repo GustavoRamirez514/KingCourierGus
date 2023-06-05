@@ -2,7 +2,7 @@
 FROM python:3.9-slim-buster
 
 # Se define el directorio de trabajo
-WORKDIR /app
+WORKDIR /
 
 # Se copian los archivos necesarios para el proyecto
 COPY requirements.txt .
